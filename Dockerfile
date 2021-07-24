@@ -33,9 +33,12 @@ RUN apt update && apt upgrade -y && \
     libwebkit2gtk-4.0-dev libgstreamer-plugins-base1.0-dev \
     libgstreamer1.0-dev libpciaccess-dev linux-headers-amd64 libx264-dev -y
 
+RUN wget http://ftp.br.debian.org/debian/pool/main/g/gettext/gettext_0.21-4_amd64.deb && \
+    apt install ./gettext_0.21-4_amd64.deb
+
 # Download HandBrake sources.
 RUN echo "Downloading HandBrake sources..." && \
-        git clone --single-branch --branch 1.3.x ${HANDBRAKE_URL} HandBrake && \
+        git clone --single-branch --branch 1.4.x ${HANDBRAKE_URL} HandBrake && \
     # Download helper.
     echo "Downloading helpers..." && \
     curl -# -L -o /tmp/run_cmd https://raw.githubusercontent.com/jlesage/docker-mgmt-tools/master/run_cmd && \
@@ -67,8 +70,8 @@ RUN apt update && \
     DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends \
         # HandBrake dependencies
         libass9 libcairo2 libgtk-3-0 libgudev-1.0-0 libjansson4 libnotify4  \
-        libtheora0 libvorbis0a libvorbisenc2 speex libopus0 libxml2 numactl \
-        xz-utils git libdbus-glib-1-2 lame x264 gstreamer1.0-plugins-base \
+        libtheora0 libvorbis0a libvorbisenc2 speex libopus0 libturbojpeg0 libxml2 \
+        xz-utils git libdbus-glib-1-2 lame x264 gstreamer1.0-plugins-base numactl \
         # For optical drive listing:
         lsscsi \
         # For watchfolder
@@ -80,7 +83,7 @@ RUN apt update && \
         tcl8.6 \
         wget -y && \
     # To read encrypted DVDs
-    wget http://www.deb-multimedia.org/pool/main/libd/libdvdcss/libdvdcss2_1.4.2-dmo1_amd64.deb && \
+    wget http://packages.linuxmint.com/pool/import/libd/libdvdcss/libdvdcss2_1.4.2-dmo1_amd64.deb && \
     apt install ./libdvdcss2_1.4.2-dmo1_amd64.deb -y && \
     # install scripts and stuff from upstream Handbrake docker image
     git config --global http.sslVerify false && \
