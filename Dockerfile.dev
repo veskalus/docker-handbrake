@@ -80,7 +80,7 @@ RUN apt update && \
         tcl8.6 \
         wget -y && \
     # To read encrypted DVDs
-    wget http://www.deb-multimedia.org/pool/main/libd/libdvdcss/libdvdcss2_1.4.2-dmo1_amd64.deb && \
+    wget http://packages.linuxmint.com/pool/import/libd/libdvdcss/libdvdcss2_1.4.2-dmo1_amd64.deb && \
     apt install ./libdvdcss2_1.4.2-dmo1_amd64.deb -y && \
     # install scripts and stuff from upstream Handbrake docker image
     git config --global http.sslVerify false && \
